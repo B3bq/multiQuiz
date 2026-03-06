@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { socket } from "../socket";
+import dictionary from '../assets/dictionary.png';
+import game from '../assets/game.png';
 
 function Menu(){
 
     return (
-        <div>
+        <div className="menu">
             <button>
-                <img src="./assets/dictionary.png" alt="dictionary" />
+                <img src={dictionary} alt="dictionary" />
                 <h2>slownik</h2>
             </button>
             <button>
-                <img src="./assets/game.png" alt="game" />
+                <img src={game} alt="game" />
                 <h2>quiz</h2>
             </button>
         </div>
