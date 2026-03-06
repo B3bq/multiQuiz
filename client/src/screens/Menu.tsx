@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { socket } from "../socket";
+import { useNavigate } from "react-router-dom";
 import dictionary from '../assets/dictionary.png';
 import game from '../assets/game.png';
 
 function Menu(){
+    const navigate = useNavigate();
 
     return (
         <div className="menu">
-            <button>
+            <button onClick={() => navigate("/dictionary")}>
                 <img src={dictionary} alt="dictionary" />
                 <h2>slownik</h2>
             </button>

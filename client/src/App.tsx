@@ -4,11 +4,13 @@ import { Routes, Route } from "react-router-dom";
 import Menu from './screens/Menu';
 import Game from './screens/Game';
 import Lobby from './screens/Lobby';
+import Dictionary from "./screens/Dictionary";
 
 function App() {
   return(
   <Routes>
       <Route path="/" element={<Menu />} />
+      <Route path="/dictionary" element={<Dictionary />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/game" element={<Game />} />
   </Routes>
