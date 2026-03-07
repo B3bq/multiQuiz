@@ -15,7 +15,7 @@ function Dictionary(){
                 }
             </ul>
             <button onClick={() => navigate('/')}>
-                <img src={arrow} alt="back" />
+                <img src={arrow} alt="back" id="back" />
             </button>
         </div>
     )

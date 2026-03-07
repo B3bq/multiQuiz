@@ -13,7 +13,7 @@ function Menu(){
                 <img src={dictionary} alt="dictionary" />
                 <h2>slownik</h2>
             </button>
-            <button>
+            <button onClick={() => navigate("/choose")}>
                 <img src={game} alt="game" />
                 <h2>quiz</h2>
             </button>
