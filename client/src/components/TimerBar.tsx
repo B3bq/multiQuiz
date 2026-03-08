@@ -20,7 +20,7 @@ export default function TimerBar({ endTime }: Props) {
   }, [endTime]);
 
   return (
-    <div style={{ background: "#ddd", height: 10 }}>
+    <div className="timer-container" style={{ background: "#ddd", height: 10 }}>
       <div
         style={{
           width: `${percent}%`,

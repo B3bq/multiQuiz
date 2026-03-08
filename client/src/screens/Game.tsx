@@ -1,11 +1,18 @@
 import { socket } from "../socket";
 import { useEffect, useState } from "react";
 import TimerBar from "../components/TimerBar";
+import burger from '../assets/burger-bar.png';
+import arrow from '../assets/arrow.png';
+import Words from '../components/words';
+import translations from '../components/translations';
 
 function Game(){
     const [question, setQuestion] = useState<any>(null);
     const [endTime, setEndTime] = useState(0);
     const [view, setView] = useState('first');
+
+    // dictionary service
+    const [isDictOpen, setIsDictOpen] = useState(false);
   
     useEffect(() => {
         const roomCode = localStorage.getItem("roomCode");
@@ -28,8 +35,6 @@ function Game(){
     }, []);
   
     if (!question) return <div>Waiting for question...</div>;
-  
-    const nickname = localStorage.getItem("nickname");
 
     function sendAnswer(key: string) {
       const roomCode = localStorage.getItem("roomCode");
@@ -54,6 +59,23 @@ function Game(){
 
     return (
       <div className="game">
+        <div className="side-dictionary">
+          <button 
+            className="dictionary-toggle-btn" 
+            onClick={() => setIsDictOpen(!isDictOpen)}
+          >
+            <img src={isDictOpen ? arrow : burger} alt={isDictOpen ? "close dictionary" : "open dictionary"} />
+          </button>
+
+          <div className={`dictionary-menu ${isDictOpen ? "open" : ""}`}>
+            <ul>
+              {translations.map((translation, index) => (
+                  <Words key={index} en={translation.en} pl={translation.pl} />
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <TimerBar endTime={endTime} />
   
         <h3>{question.text}</h3>
