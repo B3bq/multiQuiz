@@ -2,7 +2,10 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager.js";
 
-const httpServer = createServer();
+const httpServer = createServer((req, res) => {
+  res.writeHead(200);
+  res.end("Multiquiz server running");
+});
 
 type Player = {
   id: string;
