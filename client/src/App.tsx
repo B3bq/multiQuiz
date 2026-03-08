@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { socket } from "./socket";
 import { Routes, Route } from "react-router-dom";
 import Menu from './screens/Menu';
 import Game from './screens/Game';

@@ -3,7 +3,7 @@ import back from '../assets/back_arrow.png';
 import { socket } from "../socket";
 import { useEffect, useState } from "react";
 
-function getRandomInt(max) {
+function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
 }
 

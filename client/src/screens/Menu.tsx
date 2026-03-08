@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
 import dictionary from '../assets/dictionary.png';
 import game from '../assets/game.png';

@@ -9,7 +9,7 @@ function Lobby(){
     const [nickname, setNickname] = useState('');
     const [view, setView] = useState('first');
 
-    const handlerChange = (e) => {
+    const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
         value = value.replace(/\D/g, ""); //delete everything else without number
         value = value.slice(0, 4); //max 4 numbers
