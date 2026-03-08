@@ -1,6 +1,6 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager";
+import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager.ts";
 
 const httpServer = createServer();
 
