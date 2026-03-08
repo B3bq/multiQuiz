@@ -13,4 +13,4 @@ RUN npm install -g serve
 
 EXPOSE 10000
 
-CMD ["serve", "-s", "dist", "-l", "5173"]
+CMD ["sh", "-c", "serve -s dist -l $PORT"]
