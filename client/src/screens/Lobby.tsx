@@ -33,8 +33,9 @@ function Lobby(){
         });
 
         socket.on("game_started", () => {
-            navigate("/game");
-          });
+          localStorage.setItem("roomCode", code);
+          navigate("/game");
+        });
       
         socket.on("join_success", () => {
           setView("waiting");
@@ -48,13 +49,17 @@ function Lobby(){
           socket.off("game_started");
         };
       
-      }, []);
+      }, [code]);
 
     const joinRoom = () => {
-        socket.emit("join_room", {
-            roomCode: code,
-            nickname: nickname
-        });
+      // save data
+      localStorage.setItem("roomCode", code);
+      localStorage.setItem("nickname", nickname);
+
+      socket.emit("join_room", {
+          roomCode: code,
+          nickname: nickname
+      });
     }
 
     if(view === 'first'){
@@ -75,7 +80,6 @@ function Lobby(){
     if(view === 'player'){
         return(
             <div className="lobby">
-                <img src="" alt="profile" />
                 <input
                     type="text"
                     id="playerName"

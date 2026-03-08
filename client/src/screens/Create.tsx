@@ -17,9 +17,13 @@ function Create(){
 
     useEffect(() => {
         // create room in server and send codeto him
-        socket.on("connect", () => {
+        if (socket.connected) {
             socket.emit("create_room", code);
-        });
+        } else {
+            socket.on("connect", () => {
+                socket.emit("create_room", code);
+            });
+        }
 
         // update player list
         socket.on("players_update", (players)=>{
@@ -27,9 +31,10 @@ function Create(){
         })
 
         return () => {
+            socket.off("connect");
             socket.off("players_update");
         }
-    }, [])
+    }, [code])
 
     return(
         <div>
