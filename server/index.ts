@@ -1,12 +1,13 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { startQuestion, nextQuestion } from "./game/gameManager.ts";
+import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager.ts";
 
 const httpServer = createServer();
 
 type Player = {
   id: string;
   nickname: string;
+  points: number
 };
 
 type Room = {
@@ -36,7 +37,8 @@ io.on("connection", (socket) => {
       players: [
         {
           id: socket.id,
-          nickname: "HOST"
+          nickname: "HOST",
+          points: 0
         }
       ]
     };
@@ -63,7 +65,8 @@ io.on("connection", (socket) => {
   
     room.players.push({
       id: socket.id,
-      nickname
+      nickname,
+      points: 0
     });
     
     socket.join(roomCode);
@@ -77,6 +80,10 @@ io.on("connection", (socket) => {
   socket.on("join_room_reconnect", (roomCode: string) => {
     socket.join(roomCode);
     console.log(`🔄 Socket ${socket.id} awaryjnie dołączył do pokoju: ${roomCode} na ekranie gry`);
+
+    if(rooms[roomCode]){
+      socket.emit("players_update", rooms[roomCode].players);
+    }
   });
 
   socket.on("start_game", (roomCode) => {
@@ -99,8 +106,21 @@ io.on("connection", (socket) => {
     nextQuestion(io, roomCode);
   });
 
-  socket.on("answer", (data) => {
-    console.log("Odpowiedź otrzymana:", data);
+  socket.on("answer", ({roomCode, answer, nickname}) => {
+    console.log(`[DEBUG] Złapano odpowiedź: "${answer}" od socket: ${socket.id} w pokoju: ${roomCode}`);
+    const room = rooms[roomCode];
+    if(!room) return;
+
+    const player = room.players.find(p => p.nickname === nickname); // finding player
+    if (!player) return;
+    
+    // counting points
+    const pointsGained = evaluateAnswer(roomCode, nickname, answer);
+    
+    if (pointsGained > 0) {
+        player.points += pointsGained;
+        io.to(roomCode).emit("players_update", room.players);
+    }
   });
 
   socket.on("disconnect", () => {
