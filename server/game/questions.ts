@@ -1,4 +1,4 @@
-import { Question } from "../types/game.ts";
+import { Question } from "../types/game";
 
 export const questions: Question[] = [
   {

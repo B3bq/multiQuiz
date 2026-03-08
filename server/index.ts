@@ -1,6 +1,6 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager.ts";
+import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager";
 
 const httpServer = createServer();
 
@@ -138,7 +138,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 httpServer.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on ${PORT}`);
