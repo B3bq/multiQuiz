@@ -19,8 +19,9 @@ const rooms: Record<string, Room> = {};
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", 
-  },
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
 });
 
 io.on("connection", (socket) => {
@@ -137,6 +138,8 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(3000, "0.0.0.0", () => {
-  console.log("✅ Serwer działa na http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+httpServer.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });

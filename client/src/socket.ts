@@ -1,5 +1,5 @@
 import { io, Socket } from "socket.io-client";
 
-const URL = `http://${window.location.hostname}:3000`;
+const URL = import.meta.env.VITE_SERVER_URL;
 
 export const socket: Socket = io(URL);
