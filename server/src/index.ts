@@ -22,7 +22,10 @@ const rooms: Record<string, Room> = {};
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://localhost:5173",
+      "https://multiquiz.vercel.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
