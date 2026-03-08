@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { questions } from "./questions";
+import { questions } from "./questions.js";
 
 const roomStates: Record<string, { 
   currentQuestion: number; 
