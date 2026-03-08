@@ -7,6 +7,7 @@ import Lobby from './screens/Lobby';
 import Dictionary from "./screens/Dictionary";
 import Chooser from "./screens/Chooser";
 import Create from "./screens/Create";
+import GameHost from "./screens/GameHost";
 
 function App() {
   return(
@@ -17,34 +18,9 @@ function App() {
       <Route path="/create" element={<Create />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/game" element={<Game />} />
+      <Route path="/gamehost" element={<GameHost />} />
   </Routes>
   )
-  //useEffect(() => {
-  //  socket.on("connect", () => {
-  //    console.log("Połączono z serwerem:", socket.id);
-  //  });
-//
-  //  socket.on("joined_successfully", () => {
-  //    console.log("Dołączono do lobby!");
-  //  });
-//
-  //  return () => {
-  //    socket.off("connect");
-  //    socket.off("joined_successfully");
-  //  };
-  //}, []);
-//
-  //const joinLobby = () => {
-  //  socket.emit("join_lobby", "Mirek");
-  //};
-//
-  //return (
-  //  <div>
-  //    <button onClick={joinLobby}>
-  //      Dołącz do lobby
-  //    </button>
-  //  </div>
-  //);
 }
 
 export default App;

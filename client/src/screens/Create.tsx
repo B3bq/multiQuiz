@@ -33,7 +33,7 @@ function Create(){
 
     return(
         <div>
-            <h2>Players: {players.length}</h2>
+            <h2>Players: {players.length-1}</h2>
             <h1>GAME CODE</h1>
             <div className="code">
                 {code}
@@ -42,7 +42,11 @@ function Create(){
                 <button onClick={() => navigate('/choose')}>
                     <img src={back} alt="back"  id="back"/>
                 </button>
-                <button onClick={() => socket.emit("start_game", code)}>
+                <button onClick={() => {
+                    localStorage.setItem("roomCode", code);
+                    socket.emit("start_game", code);
+                    navigate('/gamehost')
+                    }}>
                     <h2>Start game</h2>
                 </button>
             </div>

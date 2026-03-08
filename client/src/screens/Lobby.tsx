@@ -96,6 +96,6 @@ function Lobby(){
             <h2>Waiting for host to start the game...</h2>
           </div>
         )
-      }
+    }
 }
 export default Lobby;
