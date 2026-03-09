@@ -9,11 +9,11 @@ function Menu(){
         <div className="menu">
             <button onClick={() => navigate("/dictionary")}>
                 <img src={dictionary} alt="dictionary" />
-                <h2>slownik</h2>
+                <h2>Dictionary</h2>
             </button>
             <button onClick={() => navigate("/choose")}>
                 <img src={game} alt="game" />
-                <h2>quiz</h2>
+                <h2>Quiz</h2>
             </button>
         </div>
     )
