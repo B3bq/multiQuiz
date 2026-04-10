@@ -3,6 +3,10 @@ import { Server } from "socket.io";
 import { startQuestion, nextQuestion, evaluateAnswer } from "./game/gameManager.js";
 
 const httpServer = createServer((req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   res.writeHead(200);
   res.end("Multiquiz server running");
 });
